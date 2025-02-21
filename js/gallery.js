@@ -77,6 +77,8 @@ function createCardsMarkup(cards) {
                             src="${card.preview}"
                             data-source="${card.original}"
                             alt="${card.description}"
+                            width="360"
+                            height="200"
                         />
                     </a>
                 </li>`;
