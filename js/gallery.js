@@ -64,3 +64,34 @@ const images = [
   },
 ];
 
+
+const gallery = document.querySelector(".gallery");
+gallery.insertAdjacentHTML("beforeend", createCardsMarkup(images));
+
+function createCardsMarkup(cards) {
+    return cards.map(card => {
+        return `<li class="gallery-item">
+                    <a class="gallery-link" href="${card.original}">
+                        <img
+                            class="gallery-image"
+                            src="${card.preview}"
+                            data-source="${card.original}"
+                            alt="${card.description}"
+                        />
+                    </a>
+                </li>`;
+    }).join("");
+}
+
+gallery.addEventListener("click", (event) => {
+  event.preventDefault()
+  if (event.target.nodeName !== "IMG") {
+    return
+  }
+  const largeImageLink = event.target.dataset.source;
+
+  basicLightbox.create(`
+		<img width="1112" height="640" src="${largeImageLink}">
+	`).show()  
+});
+
